@@ -11,6 +11,7 @@ import { JwtInterceptor, ErrorInterceptor } from './helpers';
 import { AppComponent } from './app.component';
 import { AlertComponent } from './components';
 import { HomeComponent } from './home';
+import { FormularioServicioComponent } from './cliente/formulario-servicio/formulario-servicio.component';
 
 @NgModule({
     imports: [
@@ -22,7 +23,8 @@ import { HomeComponent } from './home';
     declarations: [
         AppComponent,
         AlertComponent,
-        HomeComponent
+        HomeComponent,
+        FormularioServicioComponent
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

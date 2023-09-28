@@ -1,0 +1,51 @@
+
+<div class="container">
+    <h2> Solicitud de servicio</h2>
+    <form *ngIf="!loading" [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+          <label for="NombreContacto" class="form-label">Nombre Contacto</label>
+          <input type="text" class="form-control" id="NombreContacto">
+        </div>
+        <div class="mb-3">
+            <label for="NumeroCelular" class="form-label">Contacto Celular</label>
+            <input type="text" class="form-control" id="NumeroCelular">
+          </div>
+        <div class="mb-3">
+            <label for="contactoEmail" class="form-label">Email</label>
+            <input type="email" class="form-control" id="contactoEmail" aria-describedby="emailHelp">
+          </div>
+    
+          <div class="mb-3">
+            <label for="motivo" class="form-label">Motivo de servicio</label>
+            <select class="form-select" id="motivo" aria-label="Default select example">
+                <option selected>---- Seleccione motivo ----</option>
+                <option value="1">Asesoria</option>
+                <option value="2">Error</option>
+                <option value="3">Comprar nuevos productos</option>
+              </select>
+          </div>
+          <div class="mb-3">
+            <label for="lineaProducto" class="form-label">Línea de producto</label>
+            <select class="form-select" id="lineaProducto" aria-label="Default select example">
+                <option selected>---- Seleccione Linea de producto ----</option>
+                <option value="1">Facturacion Electronica</option>
+                <option value="2">Nomina Electronica</option>
+                <option value="3">Contabilidad</option>
+                <option value="4">Inventario</option>
+              </select>
+          </div>
+          <div class="mb-3">
+            <label for="asunto" class="form-label">Asunto</label>
+            <input type="text" class="form-control" id="asunto">
+          </div>
+          <div class="mb-3">
+            <label for="descripcion">Descripcion</label>
+            <textarea class="form-control" placeholder="Descripcion del servicio" id="descripcion"></textarea>
+          </div>
+         
+        <button type="submit" class="btn btn-primary">Enviar</button>
+      </form>
+
+
+
+</div>
