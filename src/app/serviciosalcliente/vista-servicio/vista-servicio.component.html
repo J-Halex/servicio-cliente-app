@@ -2,79 +2,90 @@
 <hr />
 
 <div class="row mt-3">
-    <div class="mb-12 col">
-        <label for="ClienteID" class="form-label">NIT del Cliente</label>
-        <label id="ClienteID"> {{ClienteID}}</label>
-    </div>
+  <div class="mb-12 col">
+    <label for="ClienteID" class="form-label">NIT del Cliente</label>
+    <label id="ClienteID"> {{ ClienteID }}</label>
+  </div>
 </div>
 
 <div class="row mt-3">
-    <div class="mb-12 col">
-        <label for="NombreContacto" class="form-label">Nombre del contacto</label>
-        <label id="NombreContacto"> {{NombreContacto}}</label>
-    </div>
+  <div class="mb-12 col">
+    <label for="NombreContacto" class="form-label">Nombre del contacto</label>
+    <label id="NombreContacto"> {{ NombreContacto }}</label>
+  </div>
 </div>
 
 <div class="row mt-3">
-    <div class="mb-12 col">
-        <label for="NumeroCelular" class="form-label">Celular de contacto</label>
-        <label id="NumeroCelular">{{NumeroCelular}}</label>
-    </div>
+  <div class="mb-12 col">
+    <label for="NumeroCelular" class="form-label">Celular de contacto</label>
+    <label id="NumeroCelular">{{ NumeroCelular }}</label>
+  </div>
 </div>
 
 <div class="row mt-3">
-    <div class="mb-12 col">
-        <label for="EmailContacto" class="form-label">Email de contacto</label>
-        <label id="EmailContacto">{{EmailContacto}}</label>
-    </div>
+  <div class="mb-12 col">
+    <label for="EmailContacto" class="form-label">Email de contacto</label>
+    <label id="EmailContacto">{{ EmailContacto }}</label>
+  </div>
 </div>
 
 <div class="row mt-3">
-    <div class="mb-12 col">
-        <label for="Motivo" class="form-label">Motivo del servicio</label>
-        <label id="Motivo">{{Motivo}}</label>
-    </div>
+  <div class="mb-12 col">
+    <label for="Motivo" class="form-label">Motivo del servicio</label>
+    <label id="Motivo">{{ Motivo }}</label>
+  </div>
 </div>
 
 <div class="row mt-3">
-    <div class="mb-12 col">
-        <label for="Funcionalidad" class="form-label">Línea de producto</label>
-        <label id="Funcionalidad">{{Funcionalidad}}</label>
-    </div>
+  <div class="mb-12 col">
+    <label for="Funcionalidad" class="form-label">Línea de producto</label>
+    <label id="Funcionalidad">{{ Funcionalidad }}</label>
+  </div>
 </div>
 
 <div class="row mt-3">
-    <div class="mb-12 col">
-        <label for="Asunto" class="form-label">Asunto</label>
-        <label id="Asunto">{{Asunto}}</label>
-    </div>
+  <div class="mb-12 col">
+    <label for="Asunto" class="form-label">Asunto</label>
+    <label id="Asunto">{{ Asunto }}</label>
+  </div>
 </div>
 
 <div class="row mt-3">
-    <div class="mb-12 col">
-        <label for="Descripcion" class="form-label">Descripción</label>
-        <label id="Descripcion"> {{Descripcion}}</label>
-    </div>
+  <div class="mb-12 col">
+    <label for="Descripcion" class="form-label">Descripción</label>
+    <label id="Descripcion"> {{ Descripcion }}</label>
+  </div>
 </div>
 
 <div *ngIf="isAsesorServicioAlCliente">
-    <div class="row mt-3">
-        <div class="mb-12 col">
-            <label for="Observaciones" class="form-label">Observaciones</label>
-            <input type="text"  id="Observaciones" [(ngModel)]="observacionesServicioAlCliente"/>
-        </div>
+  <div class="row mt-3">
+    <div class="mb-12 col">
+      <label for="Observaciones" class="form-label">Observaciones</label>
+      <input
+        type="text"
+        id="Observaciones"
+        [(ngModel)]="observacionesServicioAlCliente"
+      />
     </div>
-    <div class="row mt-3">
-        <div class="mb-6 col text-center">
-            <button type="submit" class="btn btn-primary" (click)="onCerrarServicio()">
-                Cerrar servico
-            </button>
-            <div class="mb-6 col text-center">
-                <button type="submit" class="btn btn-primary" (click)="onEscalaraServicio()">
-                    Escalar servicio
-                </button>
-            </div>
-        </div>
+  </div>
+  <div class="row mt-3">
+    <div class="mb-6 col text-center">
+      <button
+        type="submit"
+        class="btn btn-primary"
+        (click)="onCerrarServicio()"
+      >
+        Cerrar servico
+      </button>
     </div>
-    
+    <div class="mb-6 col text-center">
+      <button
+        type="submit"
+        class="btn btn-success"
+        (click)="onEscalaraServicio()"
+      >
+        Escalar servicio
+      </button>
+    </div>
+  </div>
 </div>
