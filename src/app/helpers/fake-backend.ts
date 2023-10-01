@@ -14,7 +14,8 @@ let fakeUsers: User[] = [
         password: "1234",
         firstName: "Empresa ABC",
         lastName: "",
-        role: Role.Customer
+        role: Role.Customer,
+        nit: "12345"
     }
 ];
 localStorage.setItem(usersKey, JSON.stringify(fakeUsers));
@@ -129,8 +130,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         }
 
         function basicDetails(user: any) {
-            const { id, username, firstName, lastName } = user;
-            return { id, username, firstName, lastName };
+            const { id, username, firstName, lastName, nit, role } = user;
+            return { id, username, firstName, lastName, nit, role };
         }
 
         function isLoggedIn() {
