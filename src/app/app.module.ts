@@ -12,6 +12,8 @@ import { AppComponent } from './app.component';
 import { AlertComponent } from './components';
 import { HomeComponent } from './home';
 import { FormularioServicioComponent } from './cliente/formulario-servicio/formulario-servicio.component';
+import { StatusTransformPipe } from './status-transform.pipe';
+import { FechaTransformPipe } from './fecha-transform.pipe';
 
 @NgModule({
     imports: [
@@ -24,7 +26,9 @@ import { FormularioServicioComponent } from './cliente/formulario-servicio/formu
         AppComponent,
         AlertComponent,
         HomeComponent,
-        FormularioServicioComponent
+        FormularioServicioComponent,
+        StatusTransformPipe,
+        FechaTransformPipe
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

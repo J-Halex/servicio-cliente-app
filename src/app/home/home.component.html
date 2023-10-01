@@ -1,6 +1,63 @@
 ﻿<div class="p-4">
-    <div class="container">
-        <h1>Hola {{user?.firstName}}!</h1>
-        <p>Bienvenido al sistema de servicio al cliente de Siigo!</p>
-    </div>
+  <div class="container">
+    <h1>Hola {{ user?.firstName }}!</h1>
+    <p>Bienvenido al sistema de servicio al cliente de Siigo!</p>
+  </div>
+</div>
+
+<div class="row" *ngIf="isCustomer">
+  <div class="col-md-12">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Servicio Id</th>
+          <th scope="col">Funcionalidad</th>
+          <th scope="col">Motivo</th>
+          <th scope="col">Asunto</th>
+          <th scope="col">Fecha creacion</th>
+          <th scope="col">Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let service of serviciosCustomer?.records">
+          <th scope="row">{{ service.Id_Servicio__c }}</th>
+          <td>{{ service.Funcionalidad__c }}</td>
+          <td>{{ service.MotivoServicio__c }}</td>
+          <td>{{ service.Name }}</td>
+          <td>{{ service.Fecha_Creacion__c }}</td>
+          <td>{{ service.Estado__c }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="container" *ngIf="!isCustomer">
+  <h1>Lista de Tareas</h1>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre de la Tarea</th>
+        <th>Estado</th>
+        <th>Fecha de Creación</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let tarea of tareas">
+        <td>
+          <a [href]="'/gestion-servicio/' + tarea['task-proc-inst-id'] + '/' + tarea['task-id']">{{ tarea["task-id"] }}</a>
+        </td>
+        <td>{{ tarea["task-name"] }}</td>
+        <td>{{ tarea["task-status"] | statusTransform }}</td>
+        <td>
+          {{ tarea["task-created-on"]["java.util.Date"] | fechaTransform }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div *ngIf="loading" class="text-center m-5">
+  <span class="spinner-border spinner-border-lg align-center"></span>
 </div>
