@@ -14,13 +14,16 @@ import { HomeComponent } from './home';
 import { FormularioServicioComponent } from './cliente/formulario-servicio/formulario-servicio.component';
 import { StatusTransformPipe } from './status-transform.pipe';
 import { FechaTransformPipe } from './fecha-transform.pipe';
+import { VistaServicioComponent } from './serviciosalcliente/vista-servicio/vista-servicio.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
     imports: [
         BrowserModule,
         ReactiveFormsModule,
         HttpClientModule,
-        AppRoutingModule
+        AppRoutingModule,
+        FormsModule
     ],
     declarations: [
         AppComponent,
@@ -28,7 +31,8 @@ import { FechaTransformPipe } from './fecha-transform.pipe';
         HomeComponent,
         FormularioServicioComponent,
         StatusTransformPipe,
-        FechaTransformPipe
+        FechaTransformPipe,
+        VistaServicioComponent
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

@@ -121,4 +121,11 @@ export class JbpmService {
     return this.http.get<any>(url, { headers: headers })
   }
 
+  getVariablesByTaskId(taskId: number, userId: string, password: string) {
+    var url = `${environment.apiUrlJBPM}/server/containers/${this.containerJBPM}/processes/instances/${taskId}/variables/instances`;
+    const headers = this.getHeadersGeneric(userId, password);
+    return this.http.get<any>(url, { headers: headers })
+  }
+
+
 }
