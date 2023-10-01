@@ -7,5 +7,6 @@ export class User {
     firstName?: string;
     lastName?: string;
     token?: string;
-    role?: Role
+    role?: Role;
+    nit?: string;
 }

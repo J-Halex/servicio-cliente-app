@@ -5,7 +5,7 @@
     <div class="mb-12 col">
       <label for="ClienteID" class="form-label">NIT del Cliente</label>
       <input type="text" formControlName="clienteID" class="form-control"
-        [ngClass]="{ 'is-invalid': submitted && f.clienteID.errors }" id="ClienteID" />
+        [ngClass]="{ 'is-invalid': submitted && f.clienteID.errors }" id="ClienteID" readonly />
       <div *ngIf="submitted && f.clienteID.errors" class="invalid-feedback">
         <div *ngIf="f.clienteID.errors.required">El NIT del Cliente es requerido</div>
       </div>
@@ -16,7 +16,7 @@
     <div class="mb-12 col">
       <label for="NombreContacto" class="form-label">Nombre del contacto</label>
       <input type="text" formControlName="contactoNombre" class="form-control"
-        [ngClass]="{ 'is-invalid': submitted && f.contactoNombre.errors }" id="NombreContacto" />
+        [ngClass]="{ 'is-invalid': submitted && f.contactoNombre.errors }" id="NombreContacto" readonly />
       <div *ngIf="submitted && f.contactoNombre.errors" class="invalid-feedback">
         <div *ngIf="f.contactoNombre.errors.required">El nombre del contacto es requerido</div>
       </div>
@@ -27,7 +27,7 @@
     <div class="mb-12 col">
       <label for="NumeroCelular" class="form-label">Celular de contacto</label>
       <input type="text" formControlName="contactoCelular" class="form-control"
-        [ngClass]="{ 'is-invalid': submitted && f.contactoCelular.errors }" id="NumeroCelular" />
+        [ngClass]="{ 'is-invalid': submitted && f.contactoCelular.errors }" id="NumeroCelular" readonly />
       <div *ngIf="submitted && f.contactoCelular.errors" class="invalid-feedback">
         <div *ngIf="f.contactoCelular.errors.required">El celular de contacto es requerido</div>
       </div>
@@ -38,7 +38,7 @@
     <div class="mb-12 col">
       <label for="EmailContacto" class="form-label">Email de contacto</label>
       <input type="text" formControlName="contactoEmail" class="form-control"
-        [ngClass]="{ 'is-invalid': submitted && f.contactoEmail.errors }" id="EmailContacto" />
+        [ngClass]="{ 'is-invalid': submitted && f.contactoEmail.errors }" id="EmailContacto" readonly />
       <div *ngIf="submitted && f.contactoEmail.errors" class="invalid-feedback">
         <div *ngIf="f.contactoEmail.errors.required">El Email de contacto es requerido</div>
         <div *ngIf="f.contactoEmail.errors.email">El Email debe ser valido</div>
