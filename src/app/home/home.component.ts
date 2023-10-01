@@ -10,26 +10,32 @@ export class HomeComponent implements OnInit {
   loading = false;
   serviciosCustomer: any;
   tareas: any[] = [];
+  isCustomer: boolean = false;
 
   constructor(private accountService: AccountService, private crmService: CrmService, private jbpmService: JbpmService) {
     this.user = this.accountService.userValue;
   }
 
   ngOnInit(): void {
-    if (!!this.user && this.user.role === Role.Customer) {
-      this.findInfoCustomer();
+    if (!!this.user) {
 
-      this.jbpmService.getTasksByUser(this.user?.username || "", this.user?.password || "")
-        .subscribe(
-          (response) => {
-            this.tareas = response['task-summary'];
-          },
-          (error) => {
-            console.error(error);
-          }
-        );
-
+      if (this.user.role === Role.Customer) {
+        this.isCustomer = true;
+        this.findInfoCustomer();
+      } else {
+        this.jbpmService.getTasksByUser(this.user?.username || "", this.user?.password || "")
+          .subscribe(
+            (response) => {
+              this.tareas = response['task-summary'];
+            },
+            (error) => {
+              console.error(error);
+            }
+          );
+      }
     }
+
+
   }
 
   async findInfoCustomer() {
