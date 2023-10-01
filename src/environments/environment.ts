@@ -5,7 +5,7 @@
 export const environment = {
     production: false,
     apiUrl: 'http://localhost:4000',
-    apiUrlJBPM: 'http://localhost:8080/kie-server/services/rest/',
+    apiUrlJBPM: 'http://34.168.246.125:8080/kie-server/services/rest',
 };
 
 /*

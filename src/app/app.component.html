@@ -17,7 +17,7 @@
                 </li>
             </ul>
             <span class="navbar-text me-3">
-                {{user?.firstName}}
+                {{user.firstName}}
             </span>
             <button class="btn btn-link nav-item nav-link" (click)="logout()">
                 Cerrar sesion
@@ -29,5 +29,7 @@
 <!-- main app container -->
 <div class="app-container" [ngClass]="{ 'bg-light': user }">
     <alert></alert>
-    <router-outlet></router-outlet>
+    <div class="container">
+        <router-outlet></router-outlet>
+    </div>
 </div>
