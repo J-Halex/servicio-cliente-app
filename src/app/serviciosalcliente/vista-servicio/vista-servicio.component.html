@@ -3,56 +3,64 @@
 
 <div class="row mt-3">
     <div class="mb-12 col">
-        <label for="ClienteID" class="form-label">NIT del Cliente</label>
+        <label for="ClienteID" class="form-label labeltitulo">NIT del Cliente</label>
+        <br />
         <label id="ClienteID"> {{ClienteID}}</label>
     </div>
 </div>
 
 <div class="row mt-3">
     <div class="mb-12 col">
-        <label for="NombreContacto" class="form-label">Nombre del contacto</label>
+        <label for="NombreContacto" class="form-label labeltitulo">Nombre del contacto</label>
+        <br />
         <label id="NombreContacto"> {{NombreContacto}}</label>
     </div>
 </div>
 
 <div class="row mt-3">
     <div class="mb-12 col">
-        <label for="NumeroCelular" class="form-label">Celular de contacto</label>
+        <label for="NumeroCelular" class="form-label labeltitulo">Celular de contacto</label>
+        <br />
         <label id="NumeroCelular">{{NumeroCelular}}</label>
     </div>
 </div>
 
 <div class="row mt-3">
     <div class="mb-12 col">
-        <label for="EmailContacto" class="form-label">Email de contacto</label>
+        <label for="EmailContacto" class="form-label labeltitulo">Email de contacto</label>
+        <br />
         <label id="EmailContacto">{{EmailContacto}}</label>
     </div>
 </div>
 
 <div class="row mt-3">
     <div class="mb-12 col">
-        <label for="Motivo" class="form-label">Motivo del servicio</label>
+        <label for="Motivo" class="form-label labeltitulo">Motivo del servicio</label>
+        <br />
         <label id="Motivo">{{Motivo}}</label>
     </div>
 </div>
 
 <div class="row mt-3">
     <div class="mb-12 col">
-        <label for="Funcionalidad" class="form-label">Línea de producto</label>
+        <label for="Funcionalidad" class="form-label labeltitulo">Línea de producto</label>
+        <br />
         <label id="Funcionalidad">{{Funcionalidad}}</label>
     </div>
 </div>
 
 <div class="row mt-3">
     <div class="mb-12 col">
-        <label for="Asunto" class="form-label">Asunto</label>
+        <label for="Asunto" class="form-label labeltitulo">Asunto</label>
+        <br />
         <label id="Asunto">{{Asunto}}</label>
     </div>
 </div>
 
 <div class="row mt-3">
     <div class="mb-12 col">
-        <label for="Descripcion" class="form-label">Descripción</label>
+        <label for="Descripcion" class="form-label labeltitulo">Descripción</label>
+        <br />
         <label id="Descripcion"> {{Descripcion}}</label>
     </div>
 </div>
@@ -60,8 +68,9 @@
 <div *ngIf="isAsesorServicioAlCliente">
     <div class="row mt-3">
         <div class="mb-12 col">
-            <label for="Observaciones" class="form-label">Observaciones</label>
-            <input type="text"  id="Observaciones" [(ngModel)]="observacionesServicioAlCliente"/>
+            <label for="Observaciones" class="form-label labeltitulo">Observaciones</label>
+            <input type="text" id="Observaciones" [(ngModel)]="observacionesServicioAlCliente" class="mb-12"
+                style="width: 100%;" />
         </div>
     </div>
     <div class="row mt-3">
@@ -69,12 +78,11 @@
             <button type="submit" class="btn btn-primary" (click)="onCerrarServicio()">
                 Cerrar servico
             </button>
-            <div class="mb-6 col text-center">
-                <button type="submit" class="btn btn-primary" (click)="onEscalaraServicio()">
-                    Escalar servicio
-                </button>
-            </div>
+        </div>
+        <div class="mb-6 col text-center">
+            <button type="submit" class="btn btn-primary" (click)="onEscalaraServicio()">
+                Escalar servicio
+            </button>
         </div>
     </div>
-    
 </div>
