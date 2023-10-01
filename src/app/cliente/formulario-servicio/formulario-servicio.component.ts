@@ -20,6 +20,7 @@ export class FormularioServicioComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.jbpmService.getBearerSalesForce();
     // form with validation rules
     this.form = this.formBuilder.group({
       clienteID: ['', Validators.required],

@@ -1,6 +1,33 @@
 ﻿<div class="p-4">
-    <div class="container">
-        <h1>Hola {{user?.firstName}}!</h1>
-        <p>Bienvenido al sistema de servicio al cliente de Siigo!</p>
-    </div>
+  <div class="container">
+    <h1>Hola {{ user?.firstName }}!</h1>
+    <p>Bienvenido al sistema de servicio al cliente de Siigo!</p>
+  </div>
+</div>
+
+<div class="container">
+  <h1>Lista de Tareas</h1>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre de la Tarea</th>
+        <th>Estado</th>
+        <th>Fecha de Creación</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let tarea of tareas">
+        <td>
+          <a [href]="'/ruta/' + tarea['task-id']">{{ tarea["task-id"] }}</a>
+        </td>
+        <!-- <td>{{ tarea["task-id"] }}</td> -->
+        <td>{{ tarea["task-name"] }}</td>
+        <td>{{ tarea["task-status"] | statusTransform }}</td>
+        <td>
+          {{ tarea["task-created-on"]["java.util.Date"] | fechaTransform }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
