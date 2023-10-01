@@ -1,51 +1,113 @@
+<h2 class="mt-3">Solicitud de servicio</h2>
+<hr />
+<form *ngIf="!loading" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="row mt-3">
+    <div class="mb-12 col">
+      <label for="ClienteID" class="form-label">NIT del Cliente</label>
+      <input type="text" formControlName="clienteID" class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f.clienteID.errors }" id="ClienteID" />
+      <div *ngIf="submitted && f.clienteID.errors" class="invalid-feedback">
+        <div *ngIf="f.clienteID.errors.required">El NIT del Cliente es requerido</div>
+      </div>
+    </div>
+  </div>
 
-<div class="container">
-    <h2> Solicitud de servicio</h2>
-    <form *ngIf="!loading" [formGroup]="form" (ngSubmit)="onSubmit()">
-        <div class="mb-3">
-          <label for="NombreContacto" class="form-label">Nombre Contacto</label>
-          <input type="text" class="form-control" id="NombreContacto">
-        </div>
-        <div class="mb-3">
-            <label for="NumeroCelular" class="form-label">Contacto Celular</label>
-            <input type="text" class="form-control" id="NumeroCelular">
-          </div>
-        <div class="mb-3">
-            <label for="contactoEmail" class="form-label">Email</label>
-            <input type="email" class="form-control" id="contactoEmail" aria-describedby="emailHelp">
-          </div>
-    
-          <div class="mb-3">
-            <label for="motivo" class="form-label">Motivo de servicio</label>
-            <select class="form-select" id="motivo" aria-label="Default select example">
-                <option selected>---- Seleccione motivo ----</option>
-                <option value="1">Asesoria</option>
-                <option value="2">Error</option>
-                <option value="3">Comprar nuevos productos</option>
-              </select>
-          </div>
-          <div class="mb-3">
-            <label for="lineaProducto" class="form-label">Línea de producto</label>
-            <select class="form-select" id="lineaProducto" aria-label="Default select example">
-                <option selected>---- Seleccione Linea de producto ----</option>
-                <option value="1">Facturacion Electronica</option>
-                <option value="2">Nomina Electronica</option>
-                <option value="3">Contabilidad</option>
-                <option value="4">Inventario</option>
-              </select>
-          </div>
-          <div class="mb-3">
-            <label for="asunto" class="form-label">Asunto</label>
-            <input type="text" class="form-control" id="asunto">
-          </div>
-          <div class="mb-3">
-            <label for="descripcion">Descripcion</label>
-            <textarea class="form-control" placeholder="Descripcion del servicio" id="descripcion"></textarea>
-          </div>
-         
-        <button type="submit" class="btn btn-primary">Enviar</button>
-      </form>
+  <div class="row mt-3">
+    <div class="mb-12 col">
+      <label for="NombreContacto" class="form-label">Nombre del contacto</label>
+      <input type="text" formControlName="contactoNombre" class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f.contactoNombre.errors }" id="NombreContacto" />
+      <div *ngIf="submitted && f.contactoNombre.errors" class="invalid-feedback">
+        <div *ngIf="f.contactoNombre.errors.required">El nombre del contacto es requerido</div>
+      </div>
+    </div>
+  </div>
 
+  <div class="row mt-3">
+    <div class="mb-12 col">
+      <label for="NumeroCelular" class="form-label">Celular de contacto</label>
+      <input type="text" formControlName="contactoCelular" class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f.contactoCelular.errors }" id="NumeroCelular" />
+      <div *ngIf="submitted && f.contactoCelular.errors" class="invalid-feedback">
+        <div *ngIf="f.contactoCelular.errors.required">El celular de contacto es requerido</div>
+      </div>
+    </div>
+  </div>
 
+  <div class="row mt-3">
+    <div class="mb-12 col">
+      <label for="EmailContacto" class="form-label">Email de contacto</label>
+      <input type="text" formControlName="contactoEmail" class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f.contactoEmail.errors }" id="EmailContacto" />
+      <div *ngIf="submitted && f.contactoEmail.errors" class="invalid-feedback">
+        <div *ngIf="f.contactoEmail.errors.required">El Email de contacto es requerido</div>
+        <div *ngIf="f.contactoEmail.errors.email">El Email debe ser valido</div>
+      </div>
+    </div>
+  </div>
 
-</div>
+  <div class="row mt-3">
+    <div class="mb-12 col">
+      <label for="Motivo" class="form-label">Motivo del servicio</label>
+      <select class="form-select" formControlName="motivo" id="Motivo"
+        [ngClass]="{ 'is-invalid': submitted && f.motivo.errors }">
+        <option selected>---- Seleccione motivo ----</option>
+        <option value="Asesoria">Asesoria</option>
+        <option value="Error">Error</option>
+        <option value="Comprar nuevos productos">Comprar nuevos productos</option>
+      </select>
+      <div *ngIf="submitted && f.motivo.errors" class="invalid-feedback">
+        <div *ngIf="f.motivo.errors.required">El motivo del servicio es requerido</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="mb-12 col">
+      <label for="Funcionalidad" class="form-label">Línea de producto</label>
+      <select class="form-select" formControlName="funcionalidad" id="Funcionalidad"
+        [ngClass]="{ 'is-invalid': submitted && f.funcionalidad.errors }">
+        <option selected>---- Seleccione Linea de producto ----</option>
+        <option value="Facturacion Electronica">Facturacion Electronica</option>
+        <option value="Nomina Electronica">Nomina Electronica</option>
+        <option value="Contabilidad">Contabilidad</option>
+        <option value="Inventario">Inventario</option>
+      </select>
+      <div *ngIf="submitted && f.funcionalidad.errors" class="invalid-feedback">
+        <div *ngIf="f.funcionalidad.errors.required">La línea de producto es requerida</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="mb-12 col">
+      <label for="Asunto" class="form-label">Asunto</label>
+      <input type="text" formControlName="asunto" class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f.asunto.errors }" id="Asunto" />
+      <div *ngIf="submitted && f.asunto.errors" class="invalid-feedback">
+        <div *ngIf="f.asunto.errors.required">El asunto es requerido</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="mb-12 col">
+      <label for="Descripcion" class="form-label">Descripción</label>
+      <textarea class="form-control" placeholder="Descripción del servicio" id="Descripcion"
+        formControlName="descripcion" [ngClass]="{ 'is-invalid': submitted && f.descripcion.errors }"></textarea>
+      <div *ngIf="submitted && f.descripcion.errors" class="invalid-feedback">
+        <div *ngIf="f.descripcion.errors.required">El asunto es requerido</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="mb-12 col text-center">
+      <button [disabled]="submitting" type="submit" class="btn btn-primary">
+        <span *ngIf="submitting" class="spinner-border spinner-border-sm me-1"></span>
+        Enviar
+      </button>
+    </div>
+  </div>
+
+</form>

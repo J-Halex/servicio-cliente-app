@@ -1,71 +1,70 @@
-import { Component ,OnInit} from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {  AlertService } from '@app/services';
-import { JbpmService } from '@app/services/jbpm.services';
+import { AlertService, JbpmService } from '@app/services';
+import { first, firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-formulario-servicio',
-  templateUrl: './formulario-servicio.component.html',
-  styleUrls: ['./formulario-servicio.component.css']
+  templateUrl: './formulario-servicio.component.html'
 })
-export class FormularioServicioComponent {
-
+export class FormularioServicioComponent implements OnInit {
   form!: FormGroup;
-    id?: string;    
-    clienteID: string = '';
-    contactoNombre: string = '';
-    contactoCelular: string = '';
-    contactoEmail: string = '';
-    motivo: string = '';
-    funcionalidad: string = '';
-    asunto: string = '';
-    descripcion:string = '';
-    loading = false;
-    submitting = false;
-    submitted = false;
-    constructor(
-      private formBuilder: FormBuilder,
-      private route: ActivatedRoute,
-      private router: Router,
-      private jbpmService: JbpmService,
-      private alertService: AlertService
-  ) { }
-    ngOnInit() {
-      
+  loading = false;
+  submitting = false;
+  submitted = false;
 
-      // form with validation rules
-      this.form = this.formBuilder.group({
-        contactoNombre: ['', Validators.required],
-        contactoCelular: ['', Validators.required],
-        contactoEmail: ['', Validators.required],
-        motivo: ['', Validators.required],
-        funcionalidad: ['', Validators.required],
-        asunto: ['', Validators.required],
-        descripcion: ['', Validators.required],
-      });
+  constructor(
+    private formBuilder: FormBuilder,
+    private alertService: AlertService,
+    private jbpmService: JbpmService
+  ) { }
+
+  ngOnInit() {
+    // form with validation rules
+    this.form = this.formBuilder.group({
+      clienteID: ['', Validators.required],
+      contactoNombre: ['', Validators.required],
+      contactoCelular: ['', Validators.required],
+      contactoEmail: ['', [Validators.required, Validators.email]],
+      motivo: ['', Validators.required],
+      funcionalidad: ['', Validators.required],
+      asunto: ['', Validators.required],
+      descripcion: ['', Validators.required],
+    });
   }
 
   // convenience getter for easy access to form fields
   get f() { return this.form.controls; }
 
   onSubmit() {
-      // this.submitted = true;
+    this.submitted = true;
 
-      // // reset alerts on submit
-      // this.alertService.clear();
+    // reset alerts on submit
+    this.alertService.clear();
 
-      // // stop here if form is invalid
-      // if (this.form.invalid) {
-      //     return;
-      // }
-      // this.loading = true;
-      // this.submitting = true;
-      this.jbpmService.getContainer().subscribe(x => {
-        console.log(x);
-        this.loading = false;
-    });
+    // stop here if form is invalid
+    if (this.form.invalid) {
+      return;
+    }
+
+    this.submitting = true;
+
+    const solicitud = this.form.value;
+    this.startTask(solicitud);
   }
 
+  async startTask(solicitud: any) {
+    try {
+      const processId = await firstValueFrom(this.jbpmService.startProcess());
+      const tasks: any = await firstValueFrom(this.jbpmService.getTasksByProcessId(Number(processId)));
+      const taskId: any = tasks['task-summary'][0]['task-id'];
+      await firstValueFrom(this.jbpmService.startTask(taskId));
+      await firstValueFrom(this.jbpmService.completedTask(taskId, solicitud));
+      this.alertService.success('Servicio registrado', { keepAfterRouteChange: true });
+    } catch (error: any) {
+      this.alertService.error(error.toString());
+      this.submitting = false;
+    }
+  }
 
 }
