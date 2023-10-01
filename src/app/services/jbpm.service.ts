@@ -67,8 +67,19 @@ export class JbpmService {
     return this.http.put<any>(`${environment.apiUrlJBPM}/server/containers/${this.containerJBPM}/tasks/${id}/states/started`, { "auto-progress": true }, { headers: headers });
   }
 
+  startTaskGeneric(id: number, username: string, password: string) {
+    const headers = this.getHeadersGeneric(username, password);
+    return this.http.put<any>(`${environment.apiUrlJBPM}/server/containers/${this.containerJBPM}/tasks/${id}/states/started`, { "auto-progress": true }, { headers: headers });
+  }
+
   completedTask(id: number, variables: any) {
     const headers = this.getHeaders();
+    const data = { ...variables };
+    return this.http.put<any>(`${environment.apiUrlJBPM}/server/containers/${this.containerJBPM}/tasks/${id}/states/completed`, data, { headers: headers });
+  }
+
+  completedTaskGeneric(id: number, variables: any, username: string, password: string) {
+    const headers = this.getHeadersGeneric(username, password);
     const data = { ...variables };
     return this.http.put<any>(`${environment.apiUrlJBPM}/server/containers/${this.containerJBPM}/tasks/${id}/states/completed`, data, { headers: headers });
   }

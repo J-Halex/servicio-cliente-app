@@ -20,15 +20,15 @@ export class VistaServicioComponent {
   variableinstance: [] = [];
   isAsesorServicioAlCliente: boolean = false;
 
-  ClienteID:string = "";
-  NombreContacto:string = "";
-  NumeroCelular:string = "";
-  EmailContacto:string = "";
-  Motivo:string = "";
-  Funcionalidad:string = "";
-  Asunto:string = "";
-  Descripcion:string = "";
-  observacionesServicioAlCliente:string = "";
+  ClienteID: string = "";
+  NombreContacto: string = "";
+  NumeroCelular: string = "";
+  EmailContacto: string = "";
+  Motivo: string = "";
+  Funcionalidad: string = "";
+  Asunto: string = "";
+  Descripcion: string = "";
+  observacionesServicioAlCliente: string = "";
 
 
 
@@ -53,29 +53,29 @@ export class VistaServicioComponent {
       (response) => {
         this.variableinstance = response['variable-instance'];
         for (let i = 0; i < this.variableinstance.length; i++) {
-          var obj=this.variableinstance[i];
-          if(obj['name'] == 'clienteID'){
+          var obj = this.variableinstance[i];
+          if (obj['name'] == 'clienteID') {
             this.ClienteID = obj['value'];
           }
-          if(obj['name'] == 'contactoNombre'){
+          if (obj['name'] == 'contactoNombre') {
             this.NombreContacto = obj['value'];
           }
-          if(obj['name'] == 'contactoCelular'){
+          if (obj['name'] == 'contactoCelular') {
             this.NumeroCelular = obj['value'];
           }
-          if(obj['name'] == 'contactoEmail'){
+          if (obj['name'] == 'contactoEmail') {
             this.EmailContacto = obj['value'];
           }
-          if(obj['name'] == 'motivo'){
+          if (obj['name'] == 'motivo') {
             this.Motivo = obj['value'];
           }
-          if(obj['name'] == 'funcionalidad'){
+          if (obj['name'] == 'funcionalidad') {
             this.Funcionalidad = obj['value'];
           }
-          if(obj['name'] == 'asunto'){
+          if (obj['name'] == 'asunto') {
             this.Asunto = obj['value'];
           }
-          if(obj['name'] == 'descripcion'){
+          if (obj['name'] == 'descripcion') {
             this.Descripcion = obj['value'];
           }
         }
@@ -88,8 +88,8 @@ export class VistaServicioComponent {
 
   async startTask(solicitud: any) {
     try {
-      await firstValueFrom(this.jbpmService.startTask(this.idtask));
-      await firstValueFrom(this.jbpmService.completedTask(this.idtask, solicitud));
+      await firstValueFrom(this.jbpmService.startTaskGeneric(this.idtask, this.user?.username ?? "", this.user?.password ?? ""));
+      await firstValueFrom(this.jbpmService.completedTaskGeneric(this.idtask, solicitud, this.user?.username ?? "", this.user?.password ?? ""));
       this.alertService.success('Servicio registrado', { keepAfterRouteChange: true });
       this.routerT.navigateByUrl('/');
     } catch (error: any) {
@@ -99,14 +99,14 @@ export class VistaServicioComponent {
   onCerrarServicio() {
     this.startTask({
       "servicioResuelto": true,
-      "observacionesServicioAlCliente":this.observacionesServicioAlCliente
+      "observacionesServicioAlCliente": this.observacionesServicioAlCliente
     });
   }
-  
+
   onEscalaraServicio() {
     this.startTask({
       "servicioResuelto": false,
-      "observacionesServicioAlCliente":this.observacionesServicioAlCliente
+      "observacionesServicioAlCliente": this.observacionesServicioAlCliente
     });
   }
 

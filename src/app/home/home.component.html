@@ -37,14 +37,17 @@
   <table class="table table-striped">
     <thead>
       <tr>
+        <th>Número Servicio</th>
         <th>ID</th>
         <th>Nombre de la Tarea</th>
         <th>Estado</th>
         <th>Fecha de Creación</th>
+
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let tarea of tareas">
+        <td>{{ tarea["task-proc-inst-id"] }}</td>
         <td>
           <a [href]="'/gestion-servicio/' + tarea['task-proc-inst-id'] + '/' + tarea['task-id']">{{ tarea["task-id"] }}</a>
         </td>
