@@ -18,6 +18,24 @@ let fakeUsers: User[] = [
     role: Role.Customer
   },
   {
+    id: "617f17c2-c098-4e5d-867c-14a49575b389",
+    username: "empresa-suspendida",
+    password: "1234",
+    firstName: "Empresa Suspendida",
+    lastName: "",
+    nit: "78945",
+    role: Role.Customer
+  },
+  {
+    id: "617f17c2-c098-4e5d-867c-14a49575b33e",
+    username: "empresa-inactiva",
+    password: "1234",
+    firstName: "Empresa Inactiva",
+    lastName: "",
+    nit: "36987",
+    role: Role.Customer
+  },
+  {
     id: "617f17c2-c098-4e5d-867c-14a49575b38c",
     username: "servicio-cliente-juan",
     password: "1234",

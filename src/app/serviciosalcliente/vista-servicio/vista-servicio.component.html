@@ -2,87 +2,190 @@
 <hr />
 
 <div class="row mt-3">
-    <div class="mb-12 col">
-        <label for="ClienteID" class="form-label labeltitulo">NIT del Cliente</label>
-        <br />
-        <label id="ClienteID"> {{ClienteID}}</label>
-    </div>
+  <div class="mb-12 col">
+    <label for="ClienteID" class="form-label labeltitulo">NIT del Cliente</label>
+    <br />
+    <label id="ClienteID"> {{ClienteID}}</label>
+  </div>
 </div>
 
 <div class="row mt-3">
-    <div class="mb-12 col">
-        <label for="NombreContacto" class="form-label labeltitulo">Nombre del contacto</label>
-        <br />
-        <label id="NombreContacto"> {{NombreContacto}}</label>
-    </div>
+  <div class="mb-12 col">
+    <label for="NombreContacto" class="form-label labeltitulo">Nombre del contacto</label>
+    <br />
+    <label id="NombreContacto"> {{NombreContacto}}</label>
+  </div>
 </div>
 
 <div class="row mt-3">
-    <div class="mb-12 col">
-        <label for="NumeroCelular" class="form-label labeltitulo">Celular de contacto</label>
-        <br />
-        <label id="NumeroCelular">{{NumeroCelular}}</label>
-    </div>
+  <div class="mb-12 col">
+    <label for="NumeroCelular" class="form-label labeltitulo">Celular de contacto</label>
+    <br />
+    <label id="NumeroCelular">{{NumeroCelular}}</label>
+  </div>
 </div>
 
 <div class="row mt-3">
-    <div class="mb-12 col">
-        <label for="EmailContacto" class="form-label labeltitulo">Email de contacto</label>
-        <br />
-        <label id="EmailContacto">{{EmailContacto}}</label>
-    </div>
+  <div class="mb-12 col">
+    <label for="EmailContacto" class="form-label labeltitulo">Email de contacto</label>
+    <br />
+    <label id="EmailContacto">{{EmailContacto}}</label>
+  </div>
 </div>
 
 <div class="row mt-3">
-    <div class="mb-12 col">
-        <label for="Motivo" class="form-label labeltitulo">Motivo del servicio</label>
-        <br />
-        <label id="Motivo">{{Motivo}}</label>
-    </div>
+  <div class="mb-12 col">
+    <label for="Motivo" class="form-label labeltitulo">Motivo del servicio</label>
+    <br />
+    <label id="Motivo">{{Motivo}}</label>
+  </div>
 </div>
 
 <div class="row mt-3">
-    <div class="mb-12 col">
-        <label for="Funcionalidad" class="form-label labeltitulo">Línea de producto</label>
-        <br />
-        <label id="Funcionalidad">{{Funcionalidad}}</label>
-    </div>
+  <div class="mb-12 col">
+    <label for="Funcionalidad" class="form-label labeltitulo">Línea de producto</label>
+    <br />
+    <label id="Funcionalidad">{{Funcionalidad}}</label>
+  </div>
 </div>
 
 <div class="row mt-3">
-    <div class="mb-12 col">
-        <label for="Asunto" class="form-label labeltitulo">Asunto</label>
-        <br />
-        <label id="Asunto">{{Asunto}}</label>
-    </div>
+  <div class="mb-12 col">
+    <label for="Asunto" class="form-label labeltitulo">Asunto</label>
+    <br />
+    <label id="Asunto">{{Asunto}}</label>
+  </div>
 </div>
 
 <div class="row mt-3">
-    <div class="mb-12 col">
-        <label for="Descripcion" class="form-label labeltitulo">Descripción</label>
-        <br />
-        <label id="Descripcion"> {{Descripcion}}</label>
-    </div>
+  <div class="mb-12 col">
+    <label for="Descripcion" class="form-label labeltitulo">Descripción</label>
+    <br />
+    <label id="Descripcion"> {{Descripcion}}</label>
+  </div>
 </div>
 
-<div *ngIf="isAsesorServicioAlCliente">
+<div *ngIf="isAsesorServicioAlCliente && resultadoAnalisisServicio !== 2 && resultadoAnalisisServicio !== 3">
+  <div class="row mt-3">
+    <div class="mb-12 col">
+      <label for="Observaciones" class="form-label labeltitulo">Observaciones</label>
+      <input type="text" id="Observaciones" [(ngModel)]="observacionesServicioAlCliente" class="mb-12"
+        style="width: 100%;" />
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="mb-6 col text-center">
+      <button type="submit" class="btn btn-primary" (click)="onCerrarServicio()">
+        Cerrar servico
+      </button>
+    </div>
+    <div class="mb-6 col text-center">
+      <button type="submit" class="btn btn-primary" (click)="onEscalaraServicio()">
+        Escalar servicio
+      </button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="isAsesorOperacional && resultadoAnalisisServicio !== 5">
+  <form [formGroup]="frmAnalisisOperacional" (ngSubmit)="onSubmitAnalisisOperacional()">
     <div class="row mt-3">
-        <div class="mb-12 col">
-            <label for="Observaciones" class="form-label labeltitulo">Observaciones</label>
-            <input type="text" id="Observaciones" [(ngModel)]="observacionesServicioAlCliente" class="mb-12"
-                style="width: 100%;" />
+      <div class="mb-12 col">
+        <label for="Analisis" class="form-label">Análisis del servicio</label>
+        <select class="form-select" formControlName="analisis" id="Analisis"
+          [ngClass]="{ 'is-invalid': submitted && fao.analisis.errors }">
+          <option selected>---- Seleccione una opción ----</option>
+          <option value="1">Manejo</option>
+          <option value="2">Documentación Insuficiente</option>
+          <option value="3">Dificultad de reproducción del caso</option>
+          <option value="4">Solución</option>
+          <option value="5">Calidad</option>
+        </select>
+        <div *ngIf="submitted && fao.analisis.errors" class="invalid-feedback">
+          <div *ngIf="fao.analisis.errors.required">El Análisis del servicio es requerido</div>
         </div>
+      </div>
     </div>
+
     <div class="row mt-3">
-        <div class="mb-6 col text-center">
-            <button type="submit" class="btn btn-primary" (click)="onCerrarServicio()">
-                Cerrar servico
-            </button>
+      <div class="mb-12 col">
+        <label for="observaciones" class="form-label">Observaciones</label>
+        <textarea class="form-control" placeholder="Descripción del servicio" id="observaciones"
+          formControlName="observaciones"
+          [ngClass]="{ 'is-invalid': submitted && fao.observaciones.errors }"></textarea>
+        <div *ngIf="submitted && fao.observaciones.errors" class="invalid-feedback">
+          <div *ngIf="fao.observaciones.errors.required">Las observaciones son requeridas</div>
         </div>
-        <div class="mb-6 col text-center">
-            <button type="submit" class="btn btn-primary" (click)="onEscalaraServicio()">
-                Escalar servicio
-            </button>
-        </div>
+      </div>
     </div>
+
+    <div class="row mt-3">
+      <div class="mb-12 col text-center">
+        <button [disabled]="submitting" type="submit" class="btn btn-primary">
+          <span *ngIf="submitting" class="spinner-border spinner-border-sm me-1"></span>
+          Enviar Análisis
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div *ngIf="frmAnalisisDesarrollo && resultadoAnalisisServicio === 5">
+  <form [formGroup]="frmAnalisisDesarrollo" (ngSubmit)="onSubmitAnalisisDesarrollo()">
+    <div class="row mt-3">
+      <div class="mb-12 col">
+        <label for="observaciones" class="form-label">Observaciones</label>
+        <textarea class="form-control" placeholder="Descripción del servicio" id="observaciones"
+          formControlName="observaciones"
+          [ngClass]="{ 'is-invalid': submitted && fadev.observaciones.errors }"></textarea>
+        <div *ngIf="submitted && fadev.observaciones.errors" class="invalid-feedback">
+          <div *ngIf="fadev.observaciones.errors.required">Las observaciones son requeridas</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-3">
+      <div class="mb-12 col text-center">
+        <button [disabled]="submitting" type="submit" class="btn btn-primary">
+          <span *ngIf="submitting" class="spinner-border spinner-border-sm me-1"></span>
+          Cerrar servicio
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div *ngIf="isAsesorServicioAlCliente && (resultadoAnalisisServicio === 2 || resultadoAnalisisServicio === 3)">
+  <form [formGroup]="frmContactoCliente" (ngSubmit)="onSubmitContactoCliente()">
+    <div class="row mt-3">
+      <div class="mb-12 col">
+        <label for="observaciones" class="form-label">Observaciones</label>
+        <textarea class="form-control" placeholder="Descripción del servicio" id="observaciones"
+          formControlName="observaciones"
+          [ngClass]="{ 'is-invalid': submitted && fcl.observaciones.errors }"></textarea>
+        <div *ngIf="submitted && fcl.observaciones.errors" class="invalid-feedback">
+          <div *ngIf="fcl.observaciones.errors.required">Las observaciones son requeridas</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-3">
+      <div class="mb-12 col">
+        <input class="form-check-input" type="checkbox" value="false" id="flexCheckDefault"
+          formControlName="servicioResuelto">
+        <label class="form-check-label" for="flexCheckDefault">
+          ¿Requiere continuar con el servicio?
+        </label>
+      </div>
+    </div>
+
+    <div class="row mt-3">
+      <div class="mb-12 col text-center">
+        <button [disabled]="submitting" type="submit" class="btn btn-primary">
+          <span *ngIf="submitting" class="spinner-border spinner-border-sm me-1"></span>
+          Enviar respuesta
+        </button>
+      </div>
+    </div>
+  </form>
 </div>
