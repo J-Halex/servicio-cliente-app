@@ -3,65 +3,74 @@
 
 <div class="row mt-3">
   <div class="mb-12 col">
-    <label for="ClienteID" class="form-label">NIT del Cliente</label>
-    <label id="ClienteID"> {{ ClienteID }}</label>
+    <label for="ClienteID" class="form-label labeltitulo">NIT del Cliente</label>
+    <br />
+    <label id="ClienteID"> {{ClienteID}}</label>
   </div>
 </div>
 
 <div class="row mt-3">
   <div class="mb-12 col">
-    <label for="NombreContacto" class="form-label">Nombre del contacto</label>
-    <label id="NombreContacto"> {{ NombreContacto }}</label>
+    <label for="NombreContacto" class="form-label labeltitulo">Nombre del contacto</label>
+    <br />
+    <label id="NombreContacto"> {{NombreContacto}}</label>
   </div>
 </div>
 
 <div class="row mt-3">
   <div class="mb-12 col">
-    <label for="NumeroCelular" class="form-label">Celular de contacto</label>
-    <label id="NumeroCelular">{{ NumeroCelular }}</label>
+    <label for="NumeroCelular" class="form-label labeltitulo">Celular de contacto</label>
+    <br />
+    <label id="NumeroCelular">{{NumeroCelular}}</label>
   </div>
 </div>
 
 <div class="row mt-3">
   <div class="mb-12 col">
-    <label for="EmailContacto" class="form-label">Email de contacto</label>
-    <label id="EmailContacto">{{ EmailContacto }}</label>
+    <label for="EmailContacto" class="form-label labeltitulo">Email de contacto</label>
+    <br />
+    <label id="EmailContacto">{{EmailContacto}}</label>
   </div>
 </div>
 
 <div class="row mt-3">
   <div class="mb-12 col">
-    <label for="Motivo" class="form-label">Motivo del servicio</label>
-    <label id="Motivo">{{ Motivo }}</label>
+    <label for="Motivo" class="form-label labeltitulo">Motivo del servicio</label>
+    <br />
+    <label id="Motivo">{{Motivo}}</label>
   </div>
 </div>
 
 <div class="row mt-3">
   <div class="mb-12 col">
-    <label for="Funcionalidad" class="form-label">Línea de producto</label>
-    <label id="Funcionalidad">{{ Funcionalidad }}</label>
+    <label for="Funcionalidad" class="form-label labeltitulo">Línea de producto</label>
+    <br />
+    <label id="Funcionalidad">{{Funcionalidad}}</label>
   </div>
 </div>
 
 <div class="row mt-3">
   <div class="mb-12 col">
-    <label for="Asunto" class="form-label">Asunto</label>
-    <label id="Asunto">{{ Asunto }}</label>
+    <label for="Asunto" class="form-label labeltitulo">Asunto</label>
+    <br />
+    <label id="Asunto">{{Asunto}}</label>
   </div>
 </div>
 
 <div class="row mt-3">
   <div class="mb-12 col">
-    <label for="Descripcion" class="form-label">Descripción</label>
-    <label id="Descripcion"> {{ Descripcion }}</label>
+    <label for="Descripcion" class="form-label labeltitulo">Descripción</label>
+    <br />
+    <label id="Descripcion"> {{Descripcion}}</label>
   </div>
 </div>
 
 <div *ngIf="isAsesorServicioAlCliente && resultadoAnalisisServicio !== 2 && resultadoAnalisisServicio !== 3">
   <div class="row mt-3">
     <div class="mb-12 col">
-      <label for="Observaciones" class="form-label">Observaciones</label>
-      <textarea type="text" id="Observaciones" [(ngModel)]="observacionesServicioAlCliente"></textarea>
+      <label for="Observaciones" class="form-label labeltitulo">Observaciones</label>
+      <input type="text" id="Observaciones" [(ngModel)]="observacionesServicioAlCliente" class="mb-12"
+        style="width: 100%;" />
     </div>
   </div>
   <div class="row mt-3">
@@ -71,7 +80,7 @@
       </button>
     </div>
     <div class="mb-6 col text-center">
-      <button type="submit" class="btn btn-success" (click)="onEscalaraServicio()">
+      <button type="submit" class="btn btn-primary" (click)="onEscalaraServicio()">
         Escalar servicio
       </button>
     </div>
@@ -97,18 +106,19 @@
         </div>
       </div>
     </div>
-    
+
     <div class="row mt-3">
       <div class="mb-12 col">
         <label for="observaciones" class="form-label">Observaciones</label>
         <textarea class="form-control" placeholder="Descripción del servicio" id="observaciones"
-          formControlName="observaciones" [ngClass]="{ 'is-invalid': submitted && fao.observaciones.errors }"></textarea>
+          formControlName="observaciones"
+          [ngClass]="{ 'is-invalid': submitted && fao.observaciones.errors }"></textarea>
         <div *ngIf="submitted && fao.observaciones.errors" class="invalid-feedback">
           <div *ngIf="fao.observaciones.errors.required">Las observaciones son requeridas</div>
         </div>
       </div>
     </div>
-  
+
     <div class="row mt-3">
       <div class="mb-12 col text-center">
         <button [disabled]="submitting" type="submit" class="btn btn-primary">
@@ -121,18 +131,19 @@
 </div>
 
 <div *ngIf="frmAnalisisDesarrollo && resultadoAnalisisServicio === 5">
-  <form [formGroup]="frmAnalisisDesarrollo" (ngSubmit)="onSubmitAnalisisDesarrollo()">    
+  <form [formGroup]="frmAnalisisDesarrollo" (ngSubmit)="onSubmitAnalisisDesarrollo()">
     <div class="row mt-3">
       <div class="mb-12 col">
         <label for="observaciones" class="form-label">Observaciones</label>
         <textarea class="form-control" placeholder="Descripción del servicio" id="observaciones"
-          formControlName="observaciones" [ngClass]="{ 'is-invalid': submitted && fadev.observaciones.errors }"></textarea>
+          formControlName="observaciones"
+          [ngClass]="{ 'is-invalid': submitted && fadev.observaciones.errors }"></textarea>
         <div *ngIf="submitted && fadev.observaciones.errors" class="invalid-feedback">
           <div *ngIf="fadev.observaciones.errors.required">Las observaciones son requeridas</div>
         </div>
       </div>
     </div>
-  
+
     <div class="row mt-3">
       <div class="mb-12 col text-center">
         <button [disabled]="submitting" type="submit" class="btn btn-primary">
@@ -145,21 +156,23 @@
 </div>
 
 <div *ngIf="isAsesorServicioAlCliente && (resultadoAnalisisServicio === 2 || resultadoAnalisisServicio === 3)">
-  <form [formGroup]="frmContactoCliente" (ngSubmit)="onSubmitContactoCliente()">    
+  <form [formGroup]="frmContactoCliente" (ngSubmit)="onSubmitContactoCliente()">
     <div class="row mt-3">
       <div class="mb-12 col">
         <label for="observaciones" class="form-label">Observaciones</label>
         <textarea class="form-control" placeholder="Descripción del servicio" id="observaciones"
-          formControlName="observaciones" [ngClass]="{ 'is-invalid': submitted && fcl.observaciones.errors }"></textarea>
+          formControlName="observaciones"
+          [ngClass]="{ 'is-invalid': submitted && fcl.observaciones.errors }"></textarea>
         <div *ngIf="submitted && fcl.observaciones.errors" class="invalid-feedback">
           <div *ngIf="fcl.observaciones.errors.required">Las observaciones son requeridas</div>
         </div>
       </div>
     </div>
-  
+
     <div class="row mt-3">
       <div class="mb-12 col">
-        <input class="form-check-input" type="checkbox" value="false" id="flexCheckDefault" formControlName="servicioResuelto">
+        <input class="form-check-input" type="checkbox" value="false" id="flexCheckDefault"
+          formControlName="servicioResuelto">
         <label class="form-check-label" for="flexCheckDefault">
           ¿Requiere continuar con el servicio?
         </label>
