@@ -11,18 +11,28 @@ import { JwtInterceptor, ErrorInterceptor } from './helpers';
 import { AppComponent } from './app.component';
 import { AlertComponent } from './components';
 import { HomeComponent } from './home';
+import { FormularioServicioComponent } from './cliente/formulario-servicio/formulario-servicio.component';
+import { StatusTransformPipe } from './status-transform.pipe';
+import { FechaTransformPipe } from './fecha-transform.pipe';
+import { VistaServicioComponent } from './serviciosalcliente/vista-servicio/vista-servicio.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
     imports: [
         BrowserModule,
         ReactiveFormsModule,
         HttpClientModule,
-        AppRoutingModule
+        AppRoutingModule,
+        FormsModule
     ],
     declarations: [
         AppComponent,
         AlertComponent,
-        HomeComponent
+        HomeComponent,
+        FormularioServicioComponent,
+        StatusTransformPipe,
+        FechaTransformPipe,
+        VistaServicioComponent
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
